@@ -12,13 +12,12 @@ function Airplane(name) {
   this.name = name;
   this.isFlying = false;
 }
-Airplane.prototype.takeOff = function () {
+Airplane.prototype.takeOff = function() {
   this.isFlying = true;
 };
-Airplane.prototype.land = function () {
+Airplane.prototype.land = function() {
   this.isFlying = false;
 };
-
 
 /*
 // 👇 COMPLETE YOUR WORK BELOW 👇
@@ -44,20 +43,20 @@ function Person(name, age) {
   this.age = age; // the age param
 }
 
-Person.prototype.eat = function (someFood) {
+Person.prototype.eat = function(someFood) {
   // the moving of the food
   if (this.stomach.length < 10) this.stomach.push(someFood);
-}
+};
 
-Person.prototype.poop = function () {
+Person.prototype.poop = function() {
   if (this.stomach.length >= 10) {
     this.stomach = [];
   }
-}
+};
 
-Person.prototype.toString = function () {
+Person.prototype.toString = function() {
   return `${this.name},  ${this.age}`;
-}
+};
 
 /*
   TASK 2
@@ -74,14 +73,14 @@ Person.prototype.toString = function () {
 */
 
 function Car(model, milesPerGallon) {
-
   this.tank = 0;
+  this.model = model;
   this.odometer = 0;
+  this.milesPerGallon = milesPerGallon;
 }
-Car.prototype.fill = function (gallons) {
-  this.tank += gallons
-}
-
+Car.prototype.fill = function(gallons) {
+  this.tank += gallons;
+};
 
 /*
   TASK 3
@@ -90,45 +89,41 @@ Car.prototype.fill = function (gallons) {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-Baby.prototype = Object.create(Person.prototype);
 
 function Baby(name, age, favoriteToy) {
-
-  Person.call(this, name, age)
+  Person.call(this, name, age);
   this.favoriteToy = favoriteToy;
 }
-
-Baby.prototype.play = function () {
+Baby.prototype = Object.create(Person.prototype);
+Baby.prototype.play = function() {
   return `Playing with ${this.favoriteToy}`;
-}
+};
 
 
-/* 
-  TASK 4
+  // TASK 4
 
-  In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
-*/
+  // In your own words explain the four principles for the "this" keyword below:
+  1. the 'this' keyword is all about where this is being called. 'this' by itself doesn't tell you much, but whats important is where 'this' is being called. If 'this' is being called in the global scope, 'this' will refer to the Window/Global Object binding.
+  2. Implicit Binding seems like the one that makes the most sense to me. if you use it within your object, whatever you place 'this' before the dot becomes 'this'. person.this will become implicitly bound.
+  3. new binding will make it so that when you use the new. function in a constructor prototype. i don't really understand it enough to explain it myself.
+  4. Explicit binding is when 'this' will apply to something you've use .call, .bind or .apply to. this one was really handy when i wanted to pass certain arguments from one function to another.
 
 
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
-if (typeof exports !== 'undefined') {
-  module.exports = module.exports || {}
+if (typeof exports !== "undefined") {
+  module.exports = module.exports || {};
   if (Airplane) {
-    module.exports.Airplane = Airplane
+    module.exports.Airplane = Airplane;
   }
   if (Person) {
-    module.exports.Person = Person
+    module.exports.Person = Person;
   }
   if (Car) {
-    module.exports.Car = Car
+    module.exports.Car = Car;
   }
   if (Baby) {
-    module.exports.Baby = Baby
+    module.exports.Baby = Baby;
   }
 }
